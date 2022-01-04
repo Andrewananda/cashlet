@@ -5,6 +5,7 @@ import {moderateScale} from 'react-native-size-matters';
 import {Card} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ToastComponent from '../../components/ToastComponent';
+import {styles} from './styles';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -30,56 +31,20 @@ class Dashboard extends Component {
 
   renderContent = () => (
     <View>
-      <View
-        style={{
-          backgroundColor: '#f8f9ff',
-          padding: moderateScale(16),
-          height: moderateScale(450),
-        }}>
-        <Text style={{color: '#4b5e80', fontSize: moderateScale(16)}}>
-          Your Goals
-        </Text>
+      <View style={styles.bottomSheetContainer}>
+        <Text style={styles.goalTxt}>Your Goals</Text>
 
-        <Card
-          style={{margin: moderateScale(10), borderRadius: moderateScale(10)}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              margin: moderateScale(15),
-            }}>
+        <Card style={styles.cardContainer}>
+          <View style={styles.cardMainView}>
             <View style={{flexDirection: 'column'}}>
-              <Text style={{fontSize: moderateScale(16), color: '#4b5e80'}}>
-                Goal 1
-              </Text>
-              <Text style={{fontSize: moderateScale(12), color: '#c5c6cb'}}>
-                KES 12,000
-              </Text>
+              <Text style={styles.itemTitle}>Goal 1</Text>
+              <Text style={styles.itemAmount}>KES 12,000</Text>
             </View>
             <View style={{flexDirection: 'row'}}>
-              <Pressable
-                style={{
-                  backgroundColor: '#00e671',
-                  borderRadius: moderateScale(4),
-                  height: moderateScale(30),
-                  alignSelf: 'center',
-                }}>
-                <Text style={{color: '#fff', margin: moderateScale(5)}}>
-                  Finish Goal
-                </Text>
+              <Pressable style={styles.btnFinishGoal}>
+                <Text style={styles.txtFinishGoal}>Finish Goal</Text>
               </Pressable>
-              <View
-                style={{
-                  height: moderateScale(50),
-                  backgroundColor: '#e0dfdf',
-                  width: moderateScale(1),
-                  marginStart: 10,
-                  marginTop: 0,
-                  marginBottom: 0,
-                  paddingTop: 0,
-                  paddingBottom: 0,
-                }}
-              />
+              <View style={styles.verticalLine} />
               <AntDesign
                 size={20}
                 style={{alignSelf: 'center', margin: moderateScale(5)}}
@@ -89,26 +54,9 @@ class Dashboard extends Component {
           </View>
         </Card>
         <Pressable
-          style={{
-            alignSelf: 'center',
-            position: 'absolute',
-            bottom: 30,
-            backgroundColor: '#00e671',
-            borderRadius: moderateScale(16),
-            height: moderateScale(40),
-            width: moderateScale(220),
-            justifyContent: 'center',
-          }}
+          style={styles.btnSnackbar}
           onPress={() => this.toastModal.show()}>
-          <Text
-            style={{
-              color: '#fff',
-              margin: moderateScale(5),
-              textAlign: 'center',
-              fontSize: moderateScale(16),
-            }}>
-            Show Snackbar
-          </Text>
+          <Text style={styles.txtShowSnackbar}>Show Snackbar</Text>
         </Pressable>
       </View>
     </View>
@@ -117,46 +65,13 @@ class Dashboard extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-            backgroundColor: '#4b5e80',
-          }}>
+        <View style={styles.container}>
           <ToastComponent ref={ref => (this.toastModal = ref)} />
           <View>
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: moderateScale(22),
-                margin: moderateScale(15),
-              }}>
-              {this.time() + ' Andrew'}
-            </Text>
-            <Text
-              style={{
-                color: '#fff',
-                marginStart: moderateScale(15),
-              }}>
-              Here's is the latest
-            </Text>
-            <Text
-              style={{
-                color: '#00e471',
-                marginStart: moderateScale(15),
-                fontSize: moderateScale(20),
-                marginTop: moderateScale(5),
-              }}>
-              Kes 42,000
-            </Text>
-            <Text
-              style={{
-                marginStart: moderateScale(15),
-                marginTop: moderateScale(5),
-                color: '#fff',
-              }}>
-              Total funds
-            </Text>
+            <Text style={styles.txtGreeting}>{this.time() + ' Andrew'}</Text>
+            <Text style={styles.txtLatest}>Here's is the latest</Text>
+            <Text style={styles.txtLatestAmount}>Kes 42,000</Text>
+            <Text style={styles.txtTotalFunds}>Total funds</Text>
           </View>
           <View style={{flex: 2}}>
             <BottomSheet
