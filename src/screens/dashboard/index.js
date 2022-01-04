@@ -3,10 +3,16 @@ import {Pressable, Text, View} from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {moderateScale} from 'react-native-size-matters';
 import {Card} from 'react-native-paper';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import ToastComponent from '../../components/ToastComponent';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isShown: false,
+    };
   }
 
   time = () => {
@@ -43,8 +49,12 @@ class Dashboard extends Component {
               margin: moderateScale(15),
             }}>
             <View style={{flexDirection: 'column'}}>
-              <Text>Goal 1</Text>
-              <Text>Kes 12,000</Text>
+              <Text style={{fontSize: moderateScale(16), color: '#4b5e80'}}>
+                Goal 1
+              </Text>
+              <Text style={{fontSize: moderateScale(12), color: '#c5c6cb'}}>
+                KES 12,000
+              </Text>
             </View>
             <View style={{flexDirection: 'row'}}>
               <Pressable
@@ -52,15 +62,16 @@ class Dashboard extends Component {
                   backgroundColor: '#00e671',
                   borderRadius: moderateScale(4),
                   height: moderateScale(30),
+                  alignSelf: 'center',
                 }}>
                 <Text style={{color: '#fff', margin: moderateScale(5)}}>
-                  Finish goal
+                  Finish Goal
                 </Text>
               </Pressable>
               <View
                 style={{
                   height: moderateScale(50),
-                  backgroundColor: '#f1f1f4',
+                  backgroundColor: '#e0dfdf',
                   width: moderateScale(1),
                   marginStart: 10,
                   marginTop: 0,
@@ -69,9 +80,36 @@ class Dashboard extends Component {
                   paddingBottom: 0,
                 }}
               />
+              <AntDesign
+                size={20}
+                style={{alignSelf: 'center', margin: moderateScale(5)}}
+                name={'right'}
+              />
             </View>
           </View>
         </Card>
+        <Pressable
+          style={{
+            alignSelf: 'center',
+            position: 'absolute',
+            bottom: 30,
+            backgroundColor: '#00e671',
+            borderRadius: moderateScale(16),
+            height: moderateScale(40),
+            width: moderateScale(220),
+            justifyContent: 'center',
+          }}
+          onPress={() => this.toastModal.show()}>
+          <Text
+            style={{
+              color: '#fff',
+              margin: moderateScale(5),
+              textAlign: 'center',
+              fontSize: moderateScale(16),
+            }}>
+            Show Snackbar
+          </Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -85,6 +123,7 @@ class Dashboard extends Component {
             flex: 1,
             backgroundColor: '#4b5e80',
           }}>
+          <ToastComponent ref={ref => (this.toastModal = ref)} />
           <View>
             <Text
               style={{
