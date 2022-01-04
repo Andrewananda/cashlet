@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Image} from 'react-native';
 import {CommonActions} from '@react-navigation/native';
 
+let timeout;
 class Splash extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,7 @@ class Splash extends Component {
 
   componentDidMount() {
     let _this = this;
-    setTimeout(function () {
+    timeout = setTimeout(function () {
       _this.props.navigation.dispatch(
         CommonActions.reset({
           index: 0,
@@ -17,6 +18,11 @@ class Splash extends Component {
         }),
       );
     }, 5000);
+  }
+
+  componentWillUnmount() {
+    //avoid memory leak
+    clearTimeout(timeout);
   }
 
   render() {
