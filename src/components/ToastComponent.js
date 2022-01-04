@@ -4,6 +4,7 @@ import {Card} from 'react-native-paper';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+let timeout;
 export default class ToastComponent extends Component {
   constructor(props) {
     super(props);
@@ -14,24 +15,26 @@ export default class ToastComponent extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout();
+    clearTimeout(timeout);
   }
 
   handleTimeout() {
     let _this = this;
-    setTimeout(function () {
+
+    timeout = setTimeout(function () {
       _this.setState({isShown: false});
     }, 5000);
   }
 
   show() {
-    this.setState({isShown: true}, () => {
+    clearTimeout(timeout);
+    this.setState({isShown: true, isInitialText: true}, () => {
       this.handleTimeout();
     });
   }
 
   handleBannerTouch = () => {
-    clearTimeout();
+    clearTimeout(timeout);
     this.setState({isInitialText: false}, () => {
       this.handleTimeout();
     });
