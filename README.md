@@ -23,4 +23,4 @@
 <td>
 </tr>
 </table>
-<video src='./screenshorts/screen_recording.webm' width=180/>
+<video src='./screenshorts/recording.gif' width=180/>
