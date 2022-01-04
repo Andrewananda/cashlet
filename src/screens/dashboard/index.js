@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Pressable, Text, View} from 'react-native';
+import {FlatList, Pressable, Text, View} from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {moderateScale} from 'react-native-size-matters';
 import {Card} from 'react-native-paper';
@@ -13,6 +13,11 @@ class Dashboard extends Component {
 
     this.state = {
       isShown: false,
+      data: [
+        {title: 'Goal 1', amount: '12,000'},
+        {title: 'Goal 2', amount: '20,000'},
+        {title: 'Goal 3', amount: '100,000'},
+      ],
     };
   }
 
@@ -34,25 +39,7 @@ class Dashboard extends Component {
       <View style={styles.bottomSheetContainer}>
         <Text style={styles.goalTxt}>Your Goals</Text>
 
-        <Card style={styles.cardContainer}>
-          <View style={styles.cardMainView}>
-            <View style={{flexDirection: 'column'}}>
-              <Text style={styles.itemTitle}>Goal 1</Text>
-              <Text style={styles.itemAmount}>KES 12,000</Text>
-            </View>
-            <View style={{flexDirection: 'row'}}>
-              <Pressable style={styles.btnFinishGoal}>
-                <Text style={styles.txtFinishGoal}>Finish Goal</Text>
-              </Pressable>
-              <View style={styles.verticalLine} />
-              <AntDesign
-                size={20}
-                style={{alignSelf: 'center', margin: moderateScale(5)}}
-                name={'right'}
-              />
-            </View>
-          </View>
-        </Card>
+        <FlatList data={this.state.data} renderItem={this.renderGoals} />
         <Pressable
           style={styles.btnSnackbar}
           onPress={() => this.toastModal.show()}>
@@ -60,6 +47,28 @@ class Dashboard extends Component {
         </Pressable>
       </View>
     </View>
+  );
+
+  renderGoals = ({item}) => (
+    <Card style={styles.cardContainer}>
+      <View style={styles.cardMainView}>
+        <View style={{flexDirection: 'column'}}>
+          <Text style={styles.itemTitle}>{item.title}</Text>
+          <Text style={styles.itemAmount}>{'KES ' + item.amount}</Text>
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          <Pressable style={styles.btnFinishGoal}>
+            <Text style={styles.txtFinishGoal}>Finish Goal</Text>
+          </Pressable>
+          <View style={styles.verticalLine} />
+          <AntDesign
+            size={20}
+            style={{alignSelf: 'center', margin: moderateScale(5)}}
+            name={'right'}
+          />
+        </View>
+      </View>
+    </Card>
   );
 
   render() {
@@ -70,7 +79,7 @@ class Dashboard extends Component {
           <View>
             <Text style={styles.txtGreeting}>{this.time() + ' Andrew'}</Text>
             <Text style={styles.txtLatest}>Here's is the latest</Text>
-            <Text style={styles.txtLatestAmount}>Kes 42,000</Text>
+            <Text style={styles.txtLatestAmount}>KES 42,000</Text>
             <Text style={styles.txtTotalFunds}>Total funds</Text>
           </View>
           <View style={{flex: 2}}>
