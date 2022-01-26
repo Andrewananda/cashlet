@@ -43,7 +43,7 @@ export default class ToastComponent extends Component {
   render() {
     return (
       <Modal
-        animationType="slide"
+        animationType="none"
         transparent={true}
         visible={this.state.isShown}>
         <TouchableWithoutFeedback onPressIn={this.handleBannerTouch}>

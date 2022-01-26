@@ -14,6 +14,7 @@ export const styles = {
   cardContainer: {
     margin: moderateScale(10),
     borderRadius: moderateScale(10),
+    backgroundColor: '#fff',
   },
   cardMainView: {
     flexDirection: 'row',

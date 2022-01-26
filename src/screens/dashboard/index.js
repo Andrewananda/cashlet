@@ -63,7 +63,11 @@ class Dashboard extends Component {
           <View style={styles.verticalLine} />
           <AntDesign
             size={20}
-            style={{alignSelf: 'center', margin: moderateScale(5)}}
+            style={{
+              color: '#000',
+              alignSelf: 'center',
+              margin: moderateScale(5),
+            }}
             name={'right'}
           />
         </View>
