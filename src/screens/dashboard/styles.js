@@ -19,17 +19,14 @@ export const styles = {
   cardMainView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: moderateScale(15),
+    margin: moderateScale(0),
   },
   verticalLine: {
-    height: moderateScale(50),
+    height: moderateScale(60),
     backgroundColor: '#e0dfdf',
     width: moderateScale(1),
     marginStart: 10,
-    marginTop: 0,
-    marginBottom: 0,
-    paddingTop: 0,
-    paddingBottom: 0,
+    padding: 0,
   },
   btnSnackbar: {
     alignSelf: 'center',
@@ -60,10 +57,14 @@ export const styles = {
   itemTitle: {
     fontSize: moderateScale(16),
     color: secondary,
+    marginStart: moderateScale(10),
+    marginTop: moderateScale(5),
   },
   itemAmount: {
     fontSize: moderateScale(12),
     color: '#c5c6cb',
+    marginStart: moderateScale(10),
+    marginTop: moderateScale(5),
   },
   container: {
     flexDirection: 'column',
